@@ -4,7 +4,7 @@ def getLogon(hostname,username,password,splunkdPort):
     import json
     from requests.packages.urllib3.exceptions import InsecureRequestWarning
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-    #url = "https://ds37812-14.class.splunk.com:8089/services/auth/login/"
+
     url = "https://" + str(hostname) + ":" + str(splunkdPort) + \
           "/services/auth/login/"
     querystring = {"output_mode":"json"}
