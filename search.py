@@ -40,16 +40,13 @@ def checkSearchStatus(sessionKey,hostname,splunkdPort,sid):
 
         parsed_json = json.loads(response.text)
         if (parsed_json['entry'][0]['content']['isDone']) == True and (parsed_json['entry'][0]['content']['isFailed']) == False:
-            status = []
-            status.append(parsed_json['entry'][0]['content']['isDone'])
-            status.append(parsed_json['entry'][0]['content']['isFailed'])
+            status = "Your search is done, grabbing the results.  It finished in " + str(parsed_json['entry'][0]['content']['runDuration'])
             break
+
         elif (parsed_json['entry'][0]['content']['isDone']) == True and (parsed_json['entry'][0]['content']['isFailed']) == True:
-            status=[]
-            status.append(parsed_json['entry'][0]['content']['isDone'])
-            status.append(parsed_json['entry'][0]['content']['isFailed'])
+            status = str(parsed_json['entry'][0]['content']['messages'][0]['type']) + ": " + str(parsed_json['entry'][0]['content']['messages'][0]['text'])
             break
-            
-            sleep(5)
+
+        sleep(2)
 
     return status
