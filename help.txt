@@ -1,0 +1,33 @@
+usage: main.py [-h] -s SEARCH [-u USERNAME] [-p PASSWORD] [-o OUTPUT_MODE]
+               [-of] [-host HOSTNAME] [--port SPLUNKDPORT]
+
+This is a utility script to send searches to Splunk. If ran with switch
+statements, it will take the username, password and hostname from them if
+there are no switch statements other then the search string, then it will
+attempt to open a settings.json. If one is not available, then it will ask in
+the command prompt for the username, password, and hostname.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SEARCH, --search SEARCH
+                        The search string to send to splunk. This field is
+                        mandatory
+  -u USERNAME, --username USERNAME
+                        The username the search will be ran under. This is
+                        optional, if left blank, the program will pull from a
+                        file called "settings.json"
+  -p PASSWORD, --password PASSWORD
+                        The password for the username. This is optional, if
+                        left blank, the program will pull from a file called
+                        "settings.json"
+  -o OUTPUT_MODE, --output OUTPUT_MODE
+                        This specifies the output mode of the search results.
+                        The available options are: atom, csv, json, xml, and
+                        raw. This will default to json if it is not specified
+  -of, --output_file    This specifies whether to output the results to a file
+                        or not.
+  -host HOSTNAME, --hostname HOSTNAME
+                        The hostname of the splunk instance the search will be
+                        ran against. This is optional, if left blank, the
+                        program will pull from a file called "settings.json"
+  --port SPLUNKDPORT    The splunkd port. If blank, defaults to port 8089
