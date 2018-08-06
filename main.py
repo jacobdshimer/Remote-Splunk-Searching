@@ -67,13 +67,12 @@ arguments = parser.parse_args()
 #First check if neither the username, password, or hostname was provided
 if (arguments.username is None and arguments.password is None) and arguments.hostname is None:
     with open('settings.json') as f:
-        data = f.read()
-        settings_json = json.loads(data)
+        settings_json = json.load(f)
 
 #Then check if the hostname was provided but not the username or password
 elif (arguments.username is None and arguments.password is None) and arguments.hostname != None:
     with open('settings.json') as f:
-        data = json.loads(f.read())
+        settings_json = json.load(f)
         settings_json['hostname'] = arguments.hostname
         settings_json['username'] = data['username']
         settings_json['password'] = data['password']
@@ -86,7 +85,7 @@ elif arguments.username != None and arguments.password != None and arguments.hos
 
 #If hostname was not provided nor was it in the settings.json file, quit the program with an error
 if settings_json['hostname'] == '' or settings_json['hostname'] is None:
-    print('Hostname is required, either add it to settins.json or specify with the -host or --hostname switch.')
+    print('Hostname is required, either add it to setting   s.json or specify with the -host or --hostname switch.')
     exit()
 
 #Get a session key
